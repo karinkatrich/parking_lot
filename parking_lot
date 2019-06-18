@@ -1,0 +1,14 @@
+#!/bin/bash
+
+mvn clean install
+
+path=$1
+if [ -z "$path" ]; then
+    java -cp target/classes ParkingLotApplication
+else
+    if [ "${path:0:1}" = "/" ]; then
+	java -cp target/classes ParkingLotApplication $path
+    else
+        java -cp target/classes ParkingLotApplication $(pwd)/$path
+    fi
+fi
